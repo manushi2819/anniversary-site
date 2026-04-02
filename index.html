@@ -266,6 +266,7 @@
   transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.5s ease;
   overflow-y: auto !important; /* Allow scrolling */
   overflow-x: hidden;
+
 }
 
   .section.active {
@@ -315,7 +316,7 @@
   }
   .back {
     position: absolute;
-    top: 20px;
+    top: 40px;
     left: 20px;
     background: rgba(0,0,0,0.3);
     border: none;
@@ -1383,7 +1384,7 @@
 <section id="story" class="section sectionnew story">
   <button class="btn btn-secondary back" onclick="navigateTo('hero')"><i class="fas fa-arrow-left"></i> Back</button>
   
-  <div class="story-container" style=" margin-top: 50px;">
+  <div class="story-container" style=" margin-top: 80px;">
     <!-- Left Side - Romantic Story -->
     <div class="story-text-side">
       <div class="story-header">
@@ -1458,7 +1459,7 @@
  <!-- GALLERY SECTION -->
 <section id="gallery" class="section gallery">
   <button class="btn btn-secondary back" onclick="navigateTo('story')"><i class="fas fa-arrow-left"></i> Back</button>
-  <h2 class="title">📸 Precious Memories</h2>
+  <h2 style="margin-top:100px" class="title">📸 Precious Memories</h2>
   
   <div class="gallery-wrapper">
     <!-- Polaroid 1 -->
@@ -1532,7 +1533,7 @@
   <!-- LOVE REASONS -->
   <section id="love" class="section love">
     <button class="btn btn-secondary back" onclick="navigateTo('gallery')"><i class="fas fa-arrow-left"></i> Back</button>
-    <h2 class="title">💘 Why I Love You 💘</h2>
+    <h2 class="title"  style="margin-top:80px">💘 Why I Love You 💘</h2>
     <div style="background: rgba(255,255,240,0.7); border-radius: 50px; padding: 18px; margin: 10px;">
       <p><i class="fas fa-heart" style="color:#ff4d6d;"></i> You stayed even when I didn’t notice you 💖</p>
       <p><i class="fas fa-heart" style="color:#ff4d6d;"></i> You never gave up on me 💕</p>
@@ -1762,60 +1763,79 @@ document.querySelectorAll('.pin-digit').forEach(digit => {
 mainApp.style.opacity = "0";
 mainApp.style.visibility = "hidden";
   
- // ========== FLOATING HEARTS ANIMATION ==========
-  let heartsCanvas, ctx, heartsArray = [], animationId;
-  function initFloatingHearts() {
-    heartsCanvas = document.getElementById('hearts-canvas');
-    ctx = heartsCanvas.getContext('2d');
-    function resizeCanvas() {
-      heartsCanvas.width = window.innerWidth;
-      heartsCanvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    
-    class Heart {
-      constructor() {
-        this.x = Math.random() * heartsCanvas.width;
-        this.y = heartsCanvas.height + 10;
-        this.size = Math.random() * 20 + 12;
-        this.speedY = Math.random() * 1.0 + 0.5;
-        this.opacity = Math.random() * 0.6 + 0.3;
-        this.angle = Math.random() * Math.PI * 2;
-        this.wobble = Math.random() * 0.02;
-      }
-      update() {
-        this.y -= this.speedY;
-        this.x += Math.sin(this.angle) * 0.5;
-        this.angle += this.wobble;
-        if (this.y + this.size < 0) {
-          this.y = heartsCanvas.height + 20;
-          this.x = Math.random() * heartsCanvas.width;
-        }
-      }
-      draw() {
-        if(!ctx) return;
-        ctx.save();
-        ctx.globalAlpha = this.opacity;
-        ctx.font = `${this.size}px "Segoe UI Emoji"`;
-        ctx.fillStyle = `rgba(255, 80, 120, ${this.opacity+0.2})`;
-        ctx.fillText("❤️", this.x, this.y);
-        ctx.restore();
-      }
-    }
-    for (let i = 0; i < 45; i++) heartsArray.push(new Heart());
-    function animateHearts() {
-      if (!heartsCanvas) return;
-      ctx.clearRect(0, 0, heartsCanvas.width, heartsCanvas.height);
-      for (let h of heartsArray) {
-        h.update();
-        h.draw();
-      }
-      animationId = requestAnimationFrame(animateHearts);
-    }
-    animateHearts();
-  }
+// ========== FLOATING HEARTS ANIMATION ==========
+let heartsCanvas, ctx, heartsArray = [], animationId;
+let animationRunning = false;
 
+function initFloatingHearts() {
+  // Stop previous animation if running
+  if (animationId) {
+    cancelAnimationFrame(animationId);
+    animationId = null;
+  }
+  
+  heartsCanvas = document.getElementById('hearts-canvas');
+  if (!heartsCanvas) return;
+  
+  ctx = heartsCanvas.getContext('2d');
+  
+  function resizeCanvas() {
+    heartsCanvas.width = window.innerWidth;
+    heartsCanvas.height = window.innerHeight;
+  }
+  
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  
+  class Heart {
+    constructor() {
+      this.x = Math.random() * heartsCanvas.width;
+      this.y = heartsCanvas.height + 10;
+      this.size = Math.random() * 25 + 15; // Slightly larger hearts
+      this.speedY = Math.random() * 0.8 + 0.3; // SLOWER: reduced from 1.8 to 0.8
+      this.opacity = Math.random() * 0.5 + 0.2; // More subtle opacity
+      this.angle = Math.random() * Math.PI * 2;
+      this.wobble = Math.random() * 0.01; // SLOWER: reduced wobble
+    }
+    update() {
+      this.y -= this.speedY;
+      this.x += Math.sin(this.angle) * 0.3; // Less horizontal movement
+      this.angle += this.wobble;
+      if (this.y + this.size < 0) {
+        this.y = heartsCanvas.height + 30;
+        this.x = Math.random() * heartsCanvas.width;
+      }
+    }
+    draw() {
+      if(!ctx) return;
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+      ctx.font = `${this.size}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji"`;
+      ctx.fillStyle = `rgba(255, 100, 140, ${this.opacity + 0.1})`;
+      ctx.fillText("❤️", this.x, this.y);
+      ctx.restore();
+    }
+  }
+  
+  // REDUCED: from 45 hearts to 20 hearts
+  heartsArray = [];
+  for (let i = 0; i < 20; i++) {
+    heartsArray.push(new Heart());
+  }
+  
+  function animateHearts() {
+    if (!heartsCanvas || !ctx) return;
+    ctx.clearRect(0, 0, heartsCanvas.width, heartsCanvas.height);
+    for (let h of heartsArray) {
+      h.update();
+      h.draw();
+    }
+    animationId = requestAnimationFrame(animateHearts);
+  }
+  
+  animateHearts();
+  animationRunning = true;
+}
 
 // Optional: Function to stop hearts animation (if needed)
 function stopFloatingHearts() {
