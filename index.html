@@ -587,7 +587,7 @@
 }
 
 /* Extra small phones */
-@media (max-width: 380px) {
+@media (max-width: 480px) {
  .polaroid-image {
     height: 100px !important;
   }
@@ -801,7 +801,7 @@
     color: #ffffff;
     text-align: center;
     padding: 20px;
-    font-family: 'Allura', cursive !important;
+    font-family: 'Dancing Script', cursive !important;
     background: radial-gradient(circle, #ff5e5e, #89031c);
     border-radius: 28px;
   }
@@ -1217,7 +1217,6 @@
 }
 
 .highlight::after {
-  content: '';
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -1282,6 +1281,8 @@
   }
 }
 
+
+
 /* Envelopes Grid */
 .envelopes-grid {
   display: flex;
@@ -1298,6 +1299,19 @@
   position: relative;
   width: 140px;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* Envelope open state */
+.envelope-card.open .love-note {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.envelope-card.open .envelope-small {
+  transform: translateY(-5px);
+  opacity: 0.5;
 }
 
 /* Small Envelope */
@@ -1327,7 +1341,8 @@
   z-index: 2;
 }
 
-.envelope-small:hover .envelope-flap {
+/* Open state flap */
+.envelope-card.open .envelope-flap {
   height: 50px;
   transform: rotateX(180deg);
   background: #f7c5d3;
@@ -1341,24 +1356,32 @@
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #f5a3b7;
   border-radius: 6px;
   z-index: 1;
+  gap: 5px;
 }
 
 .envelope-emoji {
-  font-size: 32px;
+  font-size: 28px;
   transition: all 0.3s ease;
 }
 
-.envelope-small:hover .envelope-emoji {
-  transform: scale(0.9);
-  opacity: 0.7;
+.open-text {
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  background: rgba(0,0,0,0.2);
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Love Note (Hidden by default, appears on hover) */
+/* Love Note (Hidden by default, appears when open) */
 .love-note {
   position: absolute;
   top: 50%;
@@ -1376,13 +1399,6 @@
   transition: all 0.45s cubic-bezier(0.34, 1.2, 0.64, 1);
   z-index: 100;
   pointer-events: none;
-}
-
-.envelope-card:hover .love-note {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) scale(1);
-  transition-delay: 0.1s;
 }
 
 /* Paper Note Content - Vintage Letter Style */
@@ -1426,13 +1442,6 @@
   z-index: 2;
 }
 
-/* Vintage paper texture overlay */
-.note-content {
-  position: relative;
-  overflow: hidden;
-}
-
-
 /* Paper texture - linen effect */
 .note-content {
   background-image: 
@@ -1452,22 +1461,9 @@
     );
 }
 
-/* Heart icon styling */
-.note-content i {
-  font-size: 32px;
-  margin-bottom: 12px;
-  display: inline-block;
-  animation: heartbeat 1.5s ease infinite;
-  background: linear-gradient(135deg, #ff4d6d, #ff1e4d);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 2px 5px rgba(255,77,109,0.2);
-}
-
 /* Romantic text styling */
 .note-content p {
-  font-size: 17px;
+  font-size: 16px;
   font-family: 'Georgia', 'Times New Roman', 'Poppins', cursive;
   font-weight: 500;
   color: #3d2b1f;
@@ -1503,55 +1499,10 @@
   opacity: 0.6;
 }
 
-/* Emoji styling */
-.note-emoji {
-  font-size: 28px;
-  display: inline-block;
-  margin-top: 5px;
-  opacity: 0.9;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
-  position: relative;
-  z-index: 3;
-}
-
-/* Vintage wax seal effect (optional decorative dot) */
-.note-content .wax-seal {
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 35px;
-  height: 35px;
-  background: #c47a6e;
-  border-radius: 50%;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  z-index: 5;
-}
-
-/* Heartbeat Animation */
-@keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.12);
-  }
-}
-
 /* Paper shadow depth effect */
-.envelope-card:hover .love-note {
+.envelope-card.open .love-note {
   filter: drop-shadow(0 5px 20px rgba(0,0,0,0.15));
-}
-
-/* Additional vintage paper border effect */
-.note-content {
-  border: 1px solid rgba(210, 180, 140, 0.3);
-  border-top: none;
-  border-left: none;
+  animation: noteAppear 0.45s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
 }
 
 /* Scroll effect for note - slight rotation on appear */
@@ -1566,10 +1517,6 @@
   }
 }
 
-.envelope-card:hover .love-note {
-  animation: noteAppear 0.45s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
-}
-
 /* Mobile adjustment */
 @media (max-width: 768px) {
   .love-note {
@@ -1582,14 +1529,6 @@
   
   .note-content p {
     font-size: 14px;
-  }
-  
-  .note-content i {
-    font-size: 26px;
-  }
-  
-  .note-emoji {
-    font-size: 22px;
   }
   
   .note-content p::before,
@@ -1610,26 +1549,16 @@
   .note-content p {
     font-size: 12px;
   }
-}
-
-/* Hover delay to keep note visible */
-.envelope-card {
-  transition: all 0.2s;
+  
+  .envelopes-grid {
+    max-width: 280px;
+    margin: 0 auto;
+  }
 }
 
 .envelope-card:hover .envelope-small {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow: 0 8px 18px rgba(0,0,0,0.2);
-}
-
-/* Heartbeat Animation */
-@keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.15);
-  }
 }
 
 /* Mobile Responsive */
@@ -1649,19 +1578,11 @@
   }
   
   .envelope-emoji {
-    font-size: 28px;
-  }
-  
-  .love-note {
-    width: 220px;
-  }
-  
-  .note-content p {
-    font-size: 14px;
-  }
-  
-  .note-content i {
     font-size: 24px;
+  }
+  
+  .open-text {
+    font-size: 9px;
   }
 }
 
@@ -1678,22 +1599,55 @@
     width: 110px;
     height: 72px;
   }
-  
-  .love-note {
-    width: 200px;
-  }
-  
-  .note-content p {
-    font-size: 13px;
-  }
 }
 
-/* For very small screens - 2 per row */
-@media (max-width: 480px) {
-  .envelopes-grid {
-    max-width: 280px;
-    margin: 0 auto;
-  }
+/* Message under title styling */
+.reasons-message {
+  text-align: center;
+  margin: 15px auto 10px auto;
+  max-width: 500px;
+}
+
+.message-bubble {
+  background: rgba(255,255,240,0.8);
+  border-radius: 30px;
+  padding: 12px 20px;
+  display: inline-block;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.message-bubble p {
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  color: #4a2a2a;
+  margin: 0;
+}
+
+.highlight {
+  color: #ff4d6d;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.small-print {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.dots {
+  font-size: 12px;
+  color: #ffb6c1;
+  letter-spacing: 4px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.small-print p {
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+  color: #a0706a;
+  font-style: italic;
+  margin: 0;
 }
 
 /* Button Styles */
@@ -1885,7 +1839,7 @@
     <!-- Polaroid 1 -->
     <div class="polaroid">
       <div class="polaroid-image">
-        <img src="images/photo3.png" alt="Memory 1">
+        <img src="images/photo13.jpeg" alt="Memory 1">
       </div>
       <div class="polaroid-caption">First date magic ✨</div>
     </div>
@@ -1893,7 +1847,7 @@
     <!-- Polaroid 2 -->
     <div class="polaroid">
       <div class="polaroid-image">
-        <img src="images/photo4.png" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffb3ba'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E🌹%3C/text%3E%3C/svg%3E" alt="Memory 2">
+        <img src="images/photo17.jpeg" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffb3ba'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E🌹%3C/text%3E%3C/svg%3E" alt="Memory 2">
       </div>
       <div class="polaroid-caption">You + Me = 💕</div>
     </div>
@@ -1901,7 +1855,7 @@
     <!-- Polaroid 3 -->
     <div class="polaroid">
       <div class="polaroid-image">
-        <img src="images/photo5.png" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffccd5'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E💑%3C/text%3E%3C/svg%3E" alt="Memory 3">
+        <img src="images/photo15.jpeg" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffccd5'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E💑%3C/text%3E%3C/svg%3E" alt="Memory 3">
       </div>
       <div class="polaroid-caption">Perfect together ❤️</div>
     </div>
@@ -1909,7 +1863,7 @@
     <!-- Polaroid 4 -->
     <div class="polaroid">
       <div class="polaroid-image">
-        <img src="images/photo6.png" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffb2c0'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E🍰%3C/text%3E%3C/svg%3E" alt="Memory 4">
+        <img src="images/photo16.jpeg" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffb2c0'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E🍰%3C/text%3E%3C/svg%3E" alt="Memory 4">
       </div>
       <div class="polaroid-caption">Sweetest moments 🎂</div>
     </div>
@@ -1917,7 +1871,7 @@
     <!-- Polaroid 5 -->
     <div class="polaroid">
       <div class="polaroid-image">
-        <img src="images/photo7.png" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ff9eb5'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E🎁%3C/text%3E%3C/svg%3E" alt="Memory 5">
+        <img src="images/photo14.jpeg" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ff9eb5'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E🎁%3C/text%3E%3C/svg%3E" alt="Memory 5">
       </div>
       <div class="polaroid-caption">You're my gift 🎀</div>
     </div>
@@ -1925,7 +1879,7 @@
     <!-- Polaroid 6 -->
     <div class="polaroid">
       <div class="polaroid-image">
-        <img src="images/photo8.png" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffc2d0'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E💌%3C/text%3E%3C/svg%3E" alt="Memory 6">
+        <img src="images/photo18.jpg" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffc2d0'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E💌%3C/text%3E%3C/svg%3E" alt="Memory 6">
       </div>
       <div class="polaroid-caption">Love letters 💖</div>
     </div>
@@ -1933,7 +1887,7 @@
     <!-- Polaroid 7 -->
     <div class="polaroid">
       <div class="polaroid-image">
-        <img src="images/photo9.png" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffa5bb'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E✨%3C/text%3E%3C/svg%3E" alt="Memory 7">
+        <img src="images/photo18.jpeg" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffa5bb'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E✨%3C/text%3E%3C/svg%3E" alt="Memory 7">
       </div>
       <div class="polaroid-caption">You light my world ✨</div>
     </div>
@@ -1941,7 +1895,7 @@
     <!-- Polaroid 8 -->
     <div class="polaroid">
       <div class="polaroid-image">
-        <img src="images/photo10.png" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ff90ad'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E💖%3C/text%3E%3C/svg%3E" alt="Memory 8">
+        <img src="images/photo19.jpeg" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ff90ad'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E💖%3C/text%3E%3C/svg%3E" alt="Memory 8">
       </div>
       <div class="polaroid-caption">Forever & always 💕</div>
     </div>
@@ -1966,30 +1920,30 @@
   
   <button class="btn-love next-btn" onclick="navigateTo('love')">Next Chapter 💖 <i class="fas fa-arrow-right"></i></button>
 </section>
-
- <!-- LOVE REASONS WITH ENVELOPES -->
+<!-- LOVE REASONS WITH ENVELOPES -->
 <section id="love" class="section love">
   <button class="btn btn-secondary back" onclick="navigateTo('gallery')"><i class="fas fa-arrow-left"></i> Back</button>
-  <h2 class="title" style="margin-top:80px">💘 Why I Love You 💘</h2>
+  <h2 style="margin-top:100px !important" class="title">💘 Why I Love You 💘</h2>
 
-<!-- Sweet message under title -->
-<div class="reasons-message">
-  <div class="message-bubble">
-    <p>These are just a few reasons... but my heart has <span class="highlight">infinite</span> reasons to love you 💕</p>
+  <!-- Sweet message under title -->
+  <div class="reasons-message">
+    <div class="message-bubble">
+      <p>These are just a few reasons... but my heart has <span class="highlight">infinite</span> reasons to love you 💕</p>
+    </div>
+    <div class="small-print">
+      <span class="dots">✦ ✦ ✦</span>
+      <p>P.S. Every day with you gives me a new reason ✨</p>
+    </div>
   </div>
-  <div class="small-print">
-    <span class="dots">✦ ✦ ✦</span>
-    <p>P.S. Every day with you gives me a new reason ✨</p>
-  </div>
-</div>
 
   <div class="envelopes-grid">
     <!-- Envelope 1 -->
-    <div class="envelope-card">
+    <div class="envelope-card" onclick="toggleEnvelope(this)">
       <div class="envelope-small">
         <div class="envelope-flap"></div>
         <div class="envelope-body">
           <span class="envelope-emoji">💌</span>
+          <span class="open-text">OPEN</span>
         </div>
       </div>
       <div class="love-note">
@@ -2000,11 +1954,12 @@
     </div>
 
     <!-- Envelope 2 -->
-    <div class="envelope-card">
+    <div class="envelope-card" onclick="toggleEnvelope(this)">
       <div class="envelope-small">
         <div class="envelope-flap"></div>
         <div class="envelope-body">
           <span class="envelope-emoji">💌</span>
+          <span class="open-text">OPEN</span>
         </div>
       </div>
       <div class="love-note">
@@ -2015,11 +1970,12 @@
     </div>
 
     <!-- Envelope 3 -->
-    <div class="envelope-card">
+    <div class="envelope-card" onclick="toggleEnvelope(this)">
       <div class="envelope-small">
         <div class="envelope-flap"></div>
         <div class="envelope-body">
           <span class="envelope-emoji">💌</span>
+          <span class="open-text">OPEN</span>
         </div>
       </div>
       <div class="love-note">
@@ -2030,11 +1986,12 @@
     </div>
 
     <!-- Envelope 4 -->
-    <div class="envelope-card">
+    <div class="envelope-card" onclick="toggleEnvelope(this)">
       <div class="envelope-small">
         <div class="envelope-flap"></div>
         <div class="envelope-body">
           <span class="envelope-emoji">💌</span>
+          <span class="open-text">OPEN</span>
         </div>
       </div>
       <div class="love-note">
@@ -2045,11 +2002,12 @@
     </div>
 
     <!-- Envelope 5 -->
-    <div class="envelope-card">
+    <div class="envelope-card" onclick="toggleEnvelope(this)">
       <div class="envelope-small">
         <div class="envelope-flap"></div>
         <div class="envelope-body">
           <span class="envelope-emoji">💌</span>
+          <span class="open-text">OPEN</span>
         </div>
       </div>
       <div class="love-note">
@@ -2088,6 +2046,30 @@
   </div>
   <button class="close-scratch" id="closeScratchBtn">Close ❤️</button>
 </div>
+
+
+<script>
+function toggleEnvelope(element) {
+  // Close all other envelopes (only one open at a time)
+  document.querySelectorAll('.envelope-card').forEach(envelope => {
+    if (envelope !== element && envelope.classList.contains('open')) {
+      envelope.classList.remove('open');
+    }
+  });
+  
+  // Toggle the clicked envelope
+  element.classList.toggle('open');
+}
+
+// Close envelope when clicking outside (optional)
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.envelope-card')) {
+    document.querySelectorAll('.envelope-card.open').forEach(envelope => {
+      envelope.classList.remove('open');
+    });
+  }
+});
+</script>
 
 <script>
   // ---------- SECRET PASSWORD LOGIC with 4-digit boxes ----------
