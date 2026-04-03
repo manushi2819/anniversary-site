@@ -329,34 +329,25 @@
     transform: translateX(-3px);
   }
 
-/* POLAROID GALLERY STYLES */
-.gallery-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  max-width: 95vw;
-  max-height: 60vh;
-  overflow-y: auto;
-  padding: 40px 30px;
-  background: rgba(255,255,240,0.3);
-  border-radius: 50px;
-}
 
-/* Polaroid Card */
-.polaroid {
-  background: white;
-  padding: 12px 12px 20px 12px;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  width: 170px;
-  flex: 0 0 auto;
-  opacity: 0;
-  animation: floatIn 0.5s ease-out forwards;
-  position: relative;
-}
+/* POLAROID GALLERY STYLES */
+.gallery-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px;
+   max-width: 1050px !important; max-height: 60vh; 
+   overflow-y: auto; padding: 40px 30px; 
+   background: rgba(255,255,240,0.3); 
+   border-radius: 50px; } /* Polaroid Card */ 
+   
+   .polaroid { 
+    background: white; 
+    padding: 12px 12px 20px 12px; 
+    border-radius: 0px; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+    cursor: pointer; 
+    width: 180px; flex: 0 0 auto;
+    opacity: 0; 
+    animation: floatIn 0.5s ease-out forwards; 
+    position: relative; 
+    transform: 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important; }
 
 /* Random rotations and positions for each polaroid - scattered look */
 .polaroid:nth-child(1) { 
@@ -390,136 +381,12 @@
 .polaroid:nth-child(8) { 
   transform: rotate(15deg) translateY(8px); 
   animation-delay: 0.45s; 
-}
-
-@keyframes floatIn {
-  from {
-    opacity: 0;
-    transform: translateY(40px) rotate(0deg);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) rotate(var(--rotation, 0deg));
-  }
-}
-
-/* On hover - polaroid straightens and lifts up */
-.polaroid:hover {
-  transform: scale(1.1) rotate(0deg) translateY(-15px) !important;
-  box-shadow: 0 25px 40px rgba(0,0,0,0.3);
-  z-index: 100;
-  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-}
-
-.polaroid-image {
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
-  border-radius: 8px;
-  margin-bottom: 12px;
-}
-
-.polaroid-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
 }
 
 .polaroid:hover .polaroid-image img {
   transform: scale(1.05);
 }
 
-.polaroid-caption {
-  font-size: 0.75rem;
-  color: #ff4d6d;
-  text-align: center;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  font-family: 'Poppins', sans-serif;
-  padding: 5px 0 0 0;
-  border-top: 1px solid #ffe0e7;
-  margin-top: 5px;
-}
-
-/* Custom scrollbar for gallery */
-.gallery-wrapper::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-.gallery-wrapper::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.5);
-  border-radius: 10px;
-}
-
-.gallery-wrapper::-webkit-scrollbar-thumb {
-  background: #ff4d6d;
-  border-radius: 10px;
-}
-
-/* POLAROID GALLERY STYLES */
-.gallery-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  max-width: 95vw;
-  max-height: 60vh;
-  overflow-y: auto;
-  padding: 40px 30px;
-  background: rgba(255,255,240,0.3);
-  border-radius: 50px;
-}
-
-/* Polaroid Card */
-.polaroid {
-  background: white;
-  padding: 12px 12px 20px 12px;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  cursor: pointer;
-  width: 170px;
-  flex: 0 0 auto;
-  opacity: 0;
-  animation: floatIn 0.5s ease-out forwards;
-  position: relative;
-  transform: 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
-}
-
-/* Random rotations and positions for each polaroid - scattered look */
-.polaroid:nth-child(1) { 
-  transform: rotate(-7deg) translateY(-8px); 
-  animation-delay: 0.1s; 
-}
-.polaroid:nth-child(2) { 
-  transform: rotate(12deg) translateY(12px); 
-  animation-delay: 0.15s; 
-}
-.polaroid:nth-child(3) { 
-  transform: rotate(-3deg) translateY(-15px); 
-  animation-delay: 0.2s; 
-}
-.polaroid:nth-child(4) { 
-  transform: rotate(8deg) translateY(5px); 
-  animation-delay: 0.25s; 
-}
-.polaroid:nth-child(5) { 
-  transform: rotate(-11deg) translateY(-5px); 
-  animation-delay: 0.3s; 
-}
-.polaroid:nth-child(6) { 
-  transform: rotate(5deg) translateY(18px); 
-  animation-delay: 0.35s; 
-}
-.polaroid:nth-child(7) { 
-  transform: rotate(-9deg) translateY(-12px); 
-  animation-delay: 0.4s; 
-}
-.polaroid:nth-child(8) { 
-  transform: rotate(15deg) translateY(8px); 
-  animation-delay: 0.45s; 
-}
 
 @keyframes floatIn {
   from {
@@ -534,18 +401,23 @@
 
 /* Base state (IMPORTANT for smoothness) */
 
-
-/* Hover - smooth lift */
+/* Hover effect */
 .polaroid:hover {
-  transform: scale(1.12) rotate(0deg) translateY(-18px) !important;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.35) !important;
-  z-index: 999 !important;
+  transform: scale(1.15) rotate(0deg);
+  z-index: 999;
+  box-shadow: 0 20px 30px rgba(0,0,0,0.3);
 }
+
+.polaroid {
+  animation: floatIn 0.5s ease-out forwards;
+  animation-delay: calc(0.05s * var(--order, 1));
+}
+
 .polaroid-image {
   width: 100%;
   height: 150px;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 0px;
   margin-bottom: 12px;
 }
 
@@ -622,16 +494,19 @@
   }
   
   .polaroid {
-    width: 160px;
+    width: 100%;
+    height: 150px;
     padding: 10px 10px 18px 10px;
   }
   
   .polaroid-image {
-    height: 130px !important; /* Increased height on mobile */
+    height: 150px !important; /* Increased height on mobile */
+    width: 120px;
   }
 
    .polaroid-image img {
     height: 100% !important;
+    width: 100% !important; 
   }
   
   .polaroid:nth-child(1) { transform: rotate(-5deg) translateY(-5px); }
@@ -897,8 +772,8 @@
     flex-direction: column;
   }
   .scratch-card {
-    width: 300px;
-    height: 300px;
+    width: 320px;
+    height: 320px;
     background: #c0a080;
     border-radius: 32px;
     position: relative;
@@ -921,13 +796,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.7rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: #fff9e0;
+    color: #ffffff;
     text-align: center;
     padding: 20px;
-    font-family: 'Great Vibes', cursive;
-    background: radial-gradient(circle, #ff9a5e, #ff4d6d);
+    font-family: 'Allura', cursive !important;
+    background: radial-gradient(circle, #ff5e5e, #89031c);
     border-radius: 28px;
   }
   .close-scratch {
@@ -1302,6 +1177,551 @@
     .title { font-size: 2rem; }
     .gallery img { width: 70px; height: 70px; }
   }
+
+    /* Message under title styling */
+.reasons-message {
+  text-align: center;
+  margin: 15px auto 10px auto;
+  max-width: 500px;
+}
+
+.message-bubble {
+  border-radius: 30px;
+  padding: 12px 20px;
+  display: inline-block;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  backdrop-filter: blur(2px);
+}
+
+.message-icon {
+  font-size: 20px;
+  margin-right: 8px;
+  display: inline-block;
+  animation: float 3s ease infinite;
+}
+
+.message-bubble p {
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  color: #4a2a2a;
+  margin: 0;
+  display: inline-block;
+}
+
+.highlight {
+  color: #ff4d6d;
+  font-weight: 700;
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #ff4d6d, #ffb6c1);
+  border-radius: 2px;
+}
+
+.small-print {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.dots {
+  font-size: 12px;
+  color: #ffb6c1;
+  letter-spacing: 4px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.small-print p {
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+  color: #a0706a;
+  font-style: italic;
+  margin: 0;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .message-bubble p {
+    font-size: 13px;
+  }
+  
+  .message-icon {
+    font-size: 18px;
+  }
+  
+  .small-print p {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .message-bubble {
+    padding: 10px 16px;
+  }
+  
+  .message-bubble p {
+    font-size: 12px;
+  }
+}
+
+/* Envelopes Grid */
+.envelopes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Envelope Card Container */
+.envelope-card {
+  position: relative;
+  width: 140px;
+  cursor: pointer;
+}
+
+/* Small Envelope */
+.envelope-small {
+  position: relative;
+  width: 140px;
+  height: 90px;
+  background: #f5a3b7;
+  border-radius: 6px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Envelope Flap */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: #f7b7c8;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  transition: all 0.4s ease;
+  transform-origin: top;
+  z-index: 2;
+}
+
+.envelope-small:hover .envelope-flap {
+  height: 50px;
+  transform: rotateX(180deg);
+  background: #f7c5d3;
+}
+
+/* Envelope Body */
+.envelope-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5a3b7;
+  border-radius: 6px;
+  z-index: 1;
+}
+
+.envelope-emoji {
+  font-size: 32px;
+  transition: all 0.3s ease;
+}
+
+.envelope-small:hover .envelope-emoji {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+/* Love Note (Hidden by default, appears on hover) */
+.love-note {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 260px;
+  background: #fffef7;
+  border-radius: 4px 20px 20px 20px;
+  box-shadow: 
+    0 20px 35px -10px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.8),
+    5px 5px 15px rgba(0,0,0,0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.45s cubic-bezier(0.34, 1.2, 0.64, 1);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.envelope-card:hover .love-note {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  transition-delay: 0.1s;
+}
+
+/* Paper Note Content - Vintage Letter Style */
+.note-content {
+  padding: 30px 22px 28px 22px;
+  text-align: center;
+  background: linear-gradient(145deg, #fffaf3 0%, #fff5e8 100%);
+  border-radius: 4px 20px 20px 20px;
+  position: relative;
+  box-shadow: 
+    inset 0 0 0 1px rgba(255,245,235,0.8),
+    inset 0 0 20px rgba(210,180,140,0.1);
+  font-family: 'Georgia', 'Times New Roman', 'Poppins', serif;
+}
+
+/* Folded corner effect */
+.note-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #fff5e8 0%, #e8d8c0 100%);
+  border-radius: 0 20px 0 30px;
+  box-shadow: -2px 2px 5px rgba(0,0,0,0.05);
+  z-index: 1;
+}
+
+/* Second fold layer */
+.note-content::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #f0e4d0 0%, #e0d0b8 100%);
+  border-radius: 0 18px 0 25px;
+  box-shadow: -1px 1px 3px rgba(0,0,0,0.05);
+  z-index: 2;
+}
+
+/* Vintage paper texture overlay */
+.note-content {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Paper texture - linen effect */
+.note-content {
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      rgba(200,180,150,0.03) 0px,
+      rgba(200,180,150,0.03) 2px,
+      transparent 2px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(180,160,130,0.02) 0px,
+      rgba(180,160,130,0.02) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+}
+
+/* Heart icon styling */
+.note-content i {
+  font-size: 32px;
+  margin-bottom: 12px;
+  display: inline-block;
+  animation: heartbeat 1.5s ease infinite;
+  background: linear-gradient(135deg, #ff4d6d, #ff1e4d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 5px rgba(255,77,109,0.2);
+}
+
+/* Romantic text styling */
+.note-content p {
+  font-size: 17px;
+  font-family: 'Georgia', 'Times New Roman', 'Poppins', cursive;
+  font-weight: 500;
+  color: #3d2b1f;
+  line-height: 1.7;
+  margin: 12px 0;
+  font-style: italic;
+  letter-spacing: 0.4px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+  position: relative;
+  z-index: 3;
+}
+
+/* Decorative divider lines */
+.note-content p::before {
+  content: "✧  ✧  ✧";
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #ffb6c1;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+
+.note-content p::after {
+  content: "✧  ✧  ✧";
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #ffb6c1;
+  margin-top: 12px;
+  opacity: 0.6;
+}
+
+/* Emoji styling */
+.note-emoji {
+  font-size: 28px;
+  display: inline-block;
+  margin-top: 5px;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+  position: relative;
+  z-index: 3;
+}
+
+/* Vintage wax seal effect (optional decorative dot) */
+.note-content .wax-seal {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 35px;
+  height: 35px;
+  background: #c47a6e;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 5;
+}
+
+/* Heartbeat Animation */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+/* Paper shadow depth effect */
+.envelope-card:hover .love-note {
+  filter: drop-shadow(0 5px 20px rgba(0,0,0,0.15));
+}
+
+/* Additional vintage paper border effect */
+.note-content {
+  border: 1px solid rgba(210, 180, 140, 0.3);
+  border-top: none;
+  border-left: none;
+}
+
+/* Scroll effect for note - slight rotation on appear */
+@keyframes noteAppear {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8) rotate(-3deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.envelope-card:hover .love-note {
+  animation: noteAppear 0.45s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+  .love-note {
+    width: 220px;
+  }
+  
+  .note-content {
+    padding: 22px 16px 24px 16px;
+  }
+  
+  .note-content p {
+    font-size: 14px;
+  }
+  
+  .note-content i {
+    font-size: 26px;
+  }
+  
+  .note-emoji {
+    font-size: 22px;
+  }
+  
+  .note-content p::before,
+  .note-content p::after {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .love-note {
+    width: 200px;
+  }
+  
+  .note-content {
+    padding: 18px 14px 20px 14px;
+  }
+  
+  .note-content p {
+    font-size: 12px;
+  }
+}
+
+/* Hover delay to keep note visible */
+.envelope-card {
+  transition: all 0.2s;
+}
+
+.envelope-card:hover .envelope-small {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+/* Heartbeat Animation */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .envelopes-grid {
+    gap: 20px;
+    padding: 20px 15px;
+  }
+  
+  .envelope-card {
+    width: 120px;
+  }
+  
+  .envelope-small {
+    width: 120px;
+    height: 78px;
+  }
+  
+  .envelope-emoji {
+    font-size: 28px;
+  }
+  
+  .love-note {
+    width: 220px;
+  }
+  
+  .note-content p {
+    font-size: 14px;
+  }
+  
+  .note-content i {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 650px) {
+  .envelopes-grid {
+    gap: 15px;
+  }
+  
+  .envelope-card {
+    width: 110px;
+  }
+  
+  .envelope-small {
+    width: 110px;
+    height: 72px;
+  }
+  
+  .love-note {
+    width: 200px;
+  }
+  
+  .note-content p {
+    font-size: 13px;
+  }
+}
+
+/* For very small screens - 2 per row */
+@media (max-width: 480px) {
+  .envelopes-grid {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+/* Button Styles */
+.btn-love {
+  background: linear-gradient(135deg, #ff4d6d, #ff1e4d);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255,77,109,0.3);
+  margin: 20px auto;
+  display: inline-block;
+}
+
+.btn-love:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(255,77,109,0.4);
+}
+
+.mt-3 {
+  margin-top: 20px;
+  text-align: center;
+  display: block;
+}
 </style>
 </head>
 <body>
@@ -1404,7 +1824,7 @@
           <div class="timeline-icon">💌</div>
           <div class="timeline-content">
             <h4>The Message That Changed Everything</h4>
-            <p>In 2021, a simple Facebook wish from you sparked something magical. That message wasn't just words — it was destiny knocking on my heart's door.</p>
+            <p>In 2021, a simple Facebook wish from you sparked something magical. That message wasn't just words it was destiny knocking on my heart's door.</p>
           </div>
         </div>
         
@@ -1412,7 +1832,7 @@
           <div class="timeline-icon">🎓</div>
           <div class="timeline-content">
             <h4>Closer Than Ever</h4>
-            <p>When you became my junior on campus, our paths intertwined. Every glance, every smile, every moment brought us closer to the love we were meant to share.</p>
+            <p>When we make it to the same campus, our paths intertwined. Every glance, every smile, every moment brought us closer to the love we were meant to share.</p>
           </div>
         </div>
         
@@ -1428,7 +1848,7 @@
           <div class="timeline-icon">💖</div>
           <div class="timeline-content">
             <h4>Forever Began</h4>
-            <p>On <strong>June 8, 2022</strong>, I whispered "YES" — and in that moment, two souls became one. Since then, every sunrise has been more beautiful because I wake up next to you.</p>
+            <p>On <strong>June 8, 2022</strong>, I whispered "YES" and in that moment, two souls became one. Since then, every sunrise has been more beautiful because I wake up next to you.</p>
           </div>
         </div>
       </div>
@@ -1444,7 +1864,7 @@
     <div class="story-image-side">
       <div class="image-collage">
         <div class="collage-main">
-          <img src="images/photo2.JPG" alt="Together" class="main-img">
+          <img src="images/photo11.jpeg" alt="Together" class="main-img">
         </div>
        
       </div>
@@ -1525,24 +1945,125 @@
       </div>
       <div class="polaroid-caption">Forever & always 💕</div>
     </div>
+
+     <!-- Polaroid 9 -->
+    <div class="polaroid">
+      <div class="polaroid-image">
+        <img src="images/photo11.jpeg" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffa5bb'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E✨%3C/text%3E%3C/svg%3E" alt="Memory 7">
+      </div>
+      <div class="polaroid-caption">You light my world ✨</div>
+    </div>
+    
+    <!-- Polaroid 10 -->
+    <div class="polaroid">
+      <div class="polaroid-image">
+        <img src="images/photo12.jpeg" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ff90ad'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E💖%3C/text%3E%3C/svg%3E" alt="Memory 8">
+      </div>
+      <div class="polaroid-caption">Forever & always 💕</div>
+    </div>
+
   </div>
   
   <button class="btn-love next-btn" onclick="navigateTo('love')">Next Chapter 💖 <i class="fas fa-arrow-right"></i></button>
 </section>
 
-  <!-- LOVE REASONS -->
-  <section id="love" class="section love">
-    <button class="btn btn-secondary back" onclick="navigateTo('gallery')"><i class="fas fa-arrow-left"></i> Back</button>
-    <h2 class="title"  style="margin-top:80px">💘 Why I Love You 💘</h2>
-    <div style="background: rgba(255,255,240,0.7); border-radius: 50px; padding: 18px; margin: 10px;">
-      <p><i class="fas fa-heart" style="color:#ff4d6d;"></i> You stayed even when I didn’t notice you 💖</p>
-      <p><i class="fas fa-heart" style="color:#ff4d6d;"></i> You never gave up on me 💕</p>
-      <p><i class="fas fa-heart" style="color:#ff4d6d;"></i> You make me feel special every day ✨</p>
-      <p><i class="fas fa-heart" style="color:#ff4d6d;"></i> You are my safe place 🫶</p>
-      <p><i class="fas fa-heart" style="color:#ff4d6d;"></i> You are my forever ❤️</p>
+ <!-- LOVE REASONS WITH ENVELOPES -->
+<section id="love" class="section love">
+  <button class="btn btn-secondary back" onclick="navigateTo('gallery')"><i class="fas fa-arrow-left"></i> Back</button>
+  <h2 class="title" style="margin-top:80px">💘 Why I Love You 💘</h2>
+
+<!-- Sweet message under title -->
+<div class="reasons-message">
+  <div class="message-bubble">
+    <p>These are just a few reasons... but my heart has <span class="highlight">infinite</span> reasons to love you 💕</p>
+  </div>
+  <div class="small-print">
+    <span class="dots">✦ ✦ ✦</span>
+    <p>P.S. Every day with you gives me a new reason ✨</p>
+  </div>
+</div>
+
+  <div class="envelopes-grid">
+    <!-- Envelope 1 -->
+    <div class="envelope-card">
+      <div class="envelope-small">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <span class="envelope-emoji">💌</span>
+        </div>
+      </div>
+      <div class="love-note">
+        <div class="note-content">
+          <p>I love you because... You stayed even when I didn't notice you</p>
+        </div>
+      </div>
     </div>
-    <button class="btn-love mt-3" onclick="navigateTo('end')">Final Chapter 💖</button>
-  </section>
+
+    <!-- Envelope 2 -->
+    <div class="envelope-card">
+      <div class="envelope-small">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <span class="envelope-emoji">💌</span>
+        </div>
+      </div>
+      <div class="love-note">
+        <div class="note-content">
+          <p>I love you because... You never gave up on me</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Envelope 3 -->
+    <div class="envelope-card">
+      <div class="envelope-small">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <span class="envelope-emoji">💌</span>
+        </div>
+      </div>
+      <div class="love-note">
+        <div class="note-content">
+          <p>I love you because... You make me feel special every day</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Envelope 4 -->
+    <div class="envelope-card">
+      <div class="envelope-small">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <span class="envelope-emoji">💌</span>
+        </div>
+      </div>
+      <div class="love-note">
+        <div class="note-content">
+          <p>I love you because... You are my safe place</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Envelope 5 -->
+    <div class="envelope-card">
+      <div class="envelope-small">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <span class="envelope-emoji">💌</span>
+        </div>
+      </div>
+      <div class="love-note">
+        <div class="note-content">
+          <p>I love you because... You are my forever</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-love mt-3" onclick="navigateTo('end')">Final Chapter 💖</button>
+</section>
+
+
 
   <!-- END & SCRATCH CARD -->
   <section id="end" class="section end">
@@ -1556,7 +2077,13 @@
 <!-- SCRATCH CARD MODAL -->
 <div id="scratchModal" class="scratch-overlay">
   <div class="scratch-card" id="scratchContainer">
-    <div class="scratch-message" id="scratchMessage">✨ Forever & Always ✨<br>💕 I LOVE YOU 💕</div>
+   <div class="scratch-message" id="scratchMessage">
+      ✨ Forever & Always ✨<br>
+       I LOVE YOU <br>
+      I can’t imagine my life without you.<br>
+      I love you more than you could ever imagine.<br>
+      You are my everything 💖
+    </div>
     <canvas id="scratchCanvas" class="scratch-canvas" width="300" height="300"></canvas>
   </div>
   <button class="close-scratch" id="closeScratchBtn">Close ❤️</button>
@@ -2055,10 +2582,82 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+<!-- LOVE REASONS WITH ENVELOPES -->
+<section id="love" class="section love">
+  <button class="btn btn-secondary back" onclick="navigateTo('gallery')"><i class="fas fa-arrow-left"></i> Back</button>
+  <h2 class="title" style="margin-top:80px">💘 Why I Love You 💘</h2>
+  
+  <div class="envelopes-container">
+    <!-- Envelope 1 -->
+    <div class="envelope" onclick="toggleEnvelope(this)">
+      <div class="envelope-front">
+        <div class="envelope-icon">✉️</div>
+        <div class="envelope-label">Click to open</div>
+      </div>
+      <div class="envelope-message">
+        <i class="fas fa-heart" style="color:#ff4d6d;"></i>
+        <p>You stayed even when I didn’t notice you 💖</p>
+      </div>
+    </div>
+
+    <!-- Envelope 2 -->
+    <div class="envelope" onclick="toggleEnvelope(this)">
+      <div class="envelope-front">
+        <div class="envelope-icon">✉️</div>
+        <div class="envelope-label">Click to open</div>
+      </div>
+      <div class="envelope-message">
+        <i class="fas fa-heart" style="color:#ff4d6d;"></i>
+        <p>You never gave up on me 💕</p>
+      </div>
+    </div>
+
+    <!-- Envelope 3 -->
+    <div class="envelope" onclick="toggleEnvelope(this)">
+      <div class="envelope-front">
+        <div class="envelope-icon">✉️</div>
+        <div class="envelope-label">Click to open</div>
+      </div>
+      <div class="envelope-message">
+        <i class="fas fa-heart" style="color:#ff4d6d;"></i>
+        <p>You make me feel special every day ✨</p>
+      </div>
+    </div>
+
+    <!-- Envelope 4 -->
+    <div class="envelope" onclick="toggleEnvelope(this)">
+      <div class="envelope-front">
+        <div class="envelope-icon">✉️</div>
+        <div class="envelope-label">Click to open</div>
+      </div>
+      <div class="envelope-message">
+        <i class="fas fa-heart" style="color:#ff4d6d;"></i>
+        <p>You are my safe place 🫶</p>
+      </div>
+    </div>
+
+    <!-- Envelope 5 -->
+    <div class="envelope" onclick="toggleEnvelope(this)">
+      <div class="envelope-front">
+        <div class="envelope-icon">✉️</div>
+        <div class="envelope-label">Click to open</div>
+      </div>
+      <div class="envelope-message">
+        <i class="fas fa-heart" style="color:#ff4d6d;"></i>
+        <p>You are my forever ❤️</p>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-love mt-3" onclick="navigateTo('end')">Final Chapter 💖</button>
+</section>
+
+
 
 <!-- audio element placeholder -->
 <audio id="bg-music" loop style="display:none;">
   <source src="music.mp3" type="audio/mpeg">
 </audio>
+
 </body>
 </html>
