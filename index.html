@@ -1684,7 +1684,7 @@
 <div id="secret-entry">
   <div class="password-container" style="animation: floatGlow 2s infinite alternate;">
     <div class="password-heart-bg">
-      <div class="heart-icon">❤️</div>
+      <div class="heart-icon">💗</div>
     </div>
     
     <div class="password-card">
@@ -1700,7 +1700,7 @@
       </div>
       
       <input type="password" id="secret-input" style="display: none;">
-      <button class="secret-btn" id="unlock-btn"><i class="fas fa-key"></i> Unlock ❤️</button>
+      <button class="secret-btn" id="unlock-btn"><i class="fas fa-key"></i> Unlock 💗</button>
       <div id="pw-error" class="error-msg"></div>
       <p class="hint-text">💡 Hint: Our special date (DDMM)</p>
     </div>
@@ -1857,7 +1857,7 @@
       <div class="polaroid-image">
         <img src="images/photo15.jpeg" viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffccd5'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='white' font-size='40'%3E💑%3C/text%3E%3C/svg%3E" alt="Memory 3">
       </div>
-      <div class="polaroid-caption">Perfect together ❤️</div>
+      <div class="polaroid-caption">Perfect together 💗</div>
     </div>
     
     <!-- Polaroid 4 -->
@@ -2044,7 +2044,7 @@
     </div>
     <canvas id="scratchCanvas" class="scratch-canvas" width="300" height="300"></canvas>
   </div>
-  <button class="close-scratch" id="closeScratchBtn">Close ❤️</button>
+  <button class="close-scratch" id="closeScratchBtn">Close 💗</button>
 </div>
 
 
@@ -2321,7 +2321,7 @@ function initFloatingHearts() {
       ctx.globalAlpha = this.opacity;
       ctx.font = `${this.size}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji"`;
       ctx.fillStyle = `rgba(255, 100, 140, ${this.opacity + 0.1})`;
-      ctx.fillText("❤️", this.x, this.y);
+      ctx.fillText("💗", this.x, this.y);
       ctx.restore();
     }
   }
@@ -2464,7 +2464,7 @@ function restartFloatingHearts(count = 20) {
  
   
   // manual fallback
-  window.surprise = function() { alert("I love you forever and always ❤️ Happy 4th Anniversary 💕"); };
+  window.surprise = function() { alert("I love you forever and always 💗 Happy 4th Anniversary 💕"); };
   
   // init floating hearts only after unlock? but call inside unlock but also safety
   window.initFloatingHearts = initFloatingHearts;
@@ -2477,7 +2477,7 @@ function restartFloatingHearts(count = 20) {
   // make sure that if someone clicks final surprise
   document.querySelectorAll('.btn-love').forEach(btn => {
     if(btn.innerText.includes('Click Me')) {
-      btn.onclick = () => alert("I love you forever and always ❤️ Happy 4th Anniversary 💕");
+      btn.onclick = () => alert("I love you forever and always 💗 Happy 4th Anniversary 💕");
     }
   });
 </script>
@@ -2626,7 +2626,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <div class="envelope-message">
         <i class="fas fa-heart" style="color:#ff4d6d;"></i>
-        <p>You are my forever ❤️</p>
+        <p>You are my forever 💗</p>
       </div>
     </div>
   </div>
